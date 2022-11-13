@@ -15,9 +15,12 @@ public class ExUi1 {
     void test01() {
         open(userConfig.url());
        actions.clickLoginButton()
-               .selectGoogleLogin()
                .setValueEmail(userConfig.email())
-               .clickNextButton();
+               .clickNextButton()
+               .setValPass(userConfig.pass())
+               .clickSubmitButton()
+               .clickUserConsole()
+               .checkUserName("Тaтьяна Казакова");
         sleep(5000);
 
     }

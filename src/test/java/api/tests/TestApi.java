@@ -9,6 +9,7 @@ import api.models.ResponseCards;
 import org.aeonbits.owner.ConfigFactory;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import utils.RandomUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,8 +19,6 @@ import static io.restassured.RestAssured.given;
 
 public class TestApi {
     static UserProperties userConfig = ConfigFactory.create(UserProperties.class, System.getProperties());
-    Faker faker = new Faker();
-
     @Test
     void boards() {
         ResponseCards[] r = given()
@@ -50,7 +49,7 @@ public class TestApi {
 
     @Test
     void createBoard() {
-        String cardName = faker.name().title();
+        String cardName = new RandomUtils().getRandomBoardName();
 
         CreateNewBoardRequest create = CreateNewBoardRequest.builder()
                 .name(cardName)
