@@ -32,7 +32,7 @@ allure {
 }
 
 dependencies {
-    testImplementation(
+    implementation(
             "com.codeborne:selenide:$selenideVersion",
             "io.qameta.allure:allure-selenide:$allureVersion",
             "org.junit.jupiter:junit-jupiter:$junitVersion",
@@ -43,6 +43,8 @@ dependencies {
             'org.postgresql:postgresql:42.1.4',
             'org.springframework:spring-jdbc:5.3.20',
             "org.aeonbits.owner:owner:$ownerVersion",
+            'io.cucumber:cucumber-java:7.8.0',
+            'io.cucumber:cucumber-junit:7.8.0',
             'org.assertj:assertj-core:3.22.0'
     )
 }
