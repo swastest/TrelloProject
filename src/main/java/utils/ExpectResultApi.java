@@ -2,7 +2,6 @@ package utils;
 
 import api.models.ResponseBoards;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,13 +28,6 @@ public class ExpectResultApi {
                 .get("https://api.trello.com/1/members/me/boards")
                 .then()
                 .statusCode(200).extract().as(ResponseBoards[].class);
-    }
-
-    @Test
-    void fg() {
-        List<String> nameBoards = getAllBoardsInSpace("test03321543").getBody().jsonPath().get("boards.name");
-        System.out.println(nameBoards);
-
     }
 
     public List<String> actualAiiBoards() {
