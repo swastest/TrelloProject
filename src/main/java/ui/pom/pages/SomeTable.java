@@ -7,6 +7,6 @@ import org.openqa.selenium.support.FindBy;
 @Getter
 public class SomeTable {
 
-    @FindBy(css =".js-list.list-wrapper")
+    @FindBy(css ="div#board")
     ElementsCollection trelloColumn;
 }

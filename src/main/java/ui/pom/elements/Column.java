@@ -15,6 +15,7 @@ public class Column {
 
     public String getColumnTitle() {
         return root.$(TITLE).text();
+
     }
 
     public void clickAddCardButton() {
