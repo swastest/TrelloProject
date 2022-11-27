@@ -1,7 +1,6 @@
 package api.tests;
 
 import api.models.CreateNewBoardRequest;
-import com.github.javafaker.Faker;
 import configProperties.UserProperties;
 import io.restassured.http.ContentType;
 import api.models.ProfileResponse;
@@ -9,7 +8,6 @@ import api.models.ResponseCards;
 import org.aeonbits.owner.ConfigFactory;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import utils.RandomUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -49,10 +47,9 @@ public class TestApi {
 
     @Test
     void createBoard() {
-        String cardName = new RandomUtils().getRandomBoardName();
 
         CreateNewBoardRequest create = CreateNewBoardRequest.builder()
-                .name(cardName)
+                .name("cardName")
                 .defaultLists(true)
                 .idOrganization("637090343986fb040f143e61")
                 .prefsBackgroundUrl("https://images.unsplash.com/photo-1668138643124-6b714461f7e2?ixid" +
@@ -71,7 +68,7 @@ public class TestApi {
                 .then().log().all()
                 .statusCode(200)
                 .extract().as(CreateNewBoardRequest.class);
-        Assertions.assertThat(resp.getName()).isEqualTo(cardName);
+        Assertions.assertThat(resp.getName()).isEqualTo("cardName");
         Ex1.deleteCard(resp.getId());
     }
 
