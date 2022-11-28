@@ -12,4 +12,8 @@ public class MainBoardPageFlow implements ProfileHeaderNavigation, ProfileMenu {
         Selenide.page(MainBoardsPage.class).getAllBoards().shouldHave(text(text));
         return this;
     }
+    public MainBoardPageFlow clickOnTable(){
+        Selenide.page(MainBoardsPage.class).getTableButton().click();
+        return this;
+    }
 }

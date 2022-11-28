@@ -13,9 +13,12 @@ public class Column {
         this.root = root;
     }
 
+    public SelenideElement getRoot() {
+        return root;
+    }
+
     public String getColumnTitle() {
         return root.$(TITLE).text();
-
     }
 
     public void clickAddCardButton() {

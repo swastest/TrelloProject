@@ -1,5 +1,6 @@
 package ui.steps;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import utils.PagesUtils;
 
@@ -24,5 +25,10 @@ public class AllBoardsSteps extends PagesUtils {
         for (String e : expectResult) {
             mainBoardPageFlow.checkAllBoards(e);
         }
+    }
+
+    @And("Нажать на кнопку перехода на доску")
+    public void clickOnTable() {
+        mainBoardPageFlow.clickOnTable();
     }
 }
