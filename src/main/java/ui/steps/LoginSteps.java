@@ -37,4 +37,13 @@ public class LoginSteps extends PagesUtils {
     public void clickEnterButton() {
         singInPageFlow.clickSubmitLoginButton();
     }
+
+    @When("Авторизация")
+    public void auth() {
+        clickLogInButton();
+        setValueLoginEmail();
+        clickNextButton();
+        setPassword();
+        clickEnterButton();
+    }
 }

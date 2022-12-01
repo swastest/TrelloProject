@@ -1,9 +1,11 @@
 package ui.pom.elements;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class Column {
     private final SelenideElement root;
+    private String columnName;
     private static final String TITLE = "div.list-header";
     private static final String ADD_CARD_BUTTON = "a.open-card-composer";
     private static final String CONFIRM_ADDED_CARD = "input.confirm";
@@ -15,6 +17,11 @@ public class Column {
 
     public SelenideElement getRoot() {
         return root;
+    }
+
+    public Column(SelenideElement root, String columnName) {
+        this.root = root;
+        this.columnName = columnName;
     }
 
     public String getColumnTitle() {
