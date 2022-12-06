@@ -5,8 +5,8 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$;
 
 public interface ProfileHeaderNavigation {
-    SelenideElement memberMenuButton = $("[data-test-id='header-member-menu-button']");
-    SelenideElement headerInfoButton = $("[data-test-id='header-info-button']");
+    SelenideElement memberMenuButton = $("[data-testid='header-member-menu-button']");
+    SelenideElement headerInfoButton = $("[data-testid='header-info-button']");
 
     default void clickProfileButton(){
         memberMenuButton.click();

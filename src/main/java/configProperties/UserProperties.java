@@ -5,7 +5,7 @@ import org.aeonbits.owner.Config;
 @Config.Sources("classpath:properties/user.properties")
 public interface UserProperties extends Config {
     String apiKey();
-    String token();
+    String secretToken();
     String tokenCard();
     String tokenCard01();
     String url();

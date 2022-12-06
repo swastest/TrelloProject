@@ -21,7 +21,7 @@ public class TestApi {
     void boards() {
         ResponseCards[] r = given()
                 .queryParam("key", userConfig.apiKey())
-                .queryParam("token", userConfig.token())
+                .queryParam("token", userConfig.secretToken())
                 .get(userConfig.url() + EndPoints.ALL_BOARDS.getPath())
                 .then().log().all()
                 .statusCode(200)
@@ -35,7 +35,7 @@ public class TestApi {
     void profile() {
         ProfileResponse r = given()
                 .queryParam("key", userConfig.apiKey())
-                .queryParam("token", userConfig.token())
+                .queryParam("token", userConfig.secretToken())
                 .get(userConfig.url() + EndPoints.PROFILE.getPath())
                 .then().log().all()
                 .statusCode(200)

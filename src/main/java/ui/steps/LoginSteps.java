@@ -5,10 +5,11 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import utils.PagesUtils;
+import utils.UserController;
 
 public class LoginSteps extends PagesUtils {
 
-    @Given("Открыть сайт {string}")
+    @Given("Открыта главная страница сайта {string}")
     public void openSite(String url) {
         Selenide.open(url);
     }
@@ -18,9 +19,9 @@ public class LoginSteps extends PagesUtils {
         mainPageFlow.clickSingInButton();
     }
 
-    @And("Ввод в поле логин email")
-    public void setValueLoginEmail() {
-        singInPageFlow.setValueEmailLogin(userConfig.email());
+    @And("Ввод в поле логин {string}")
+    public void setValueLoginEmail(String email) {
+        singInPageFlow.setValueEmailLogin(email);
     }
 
     @And("Нажать на кнопку продолжить")
@@ -28,9 +29,9 @@ public class LoginSteps extends PagesUtils {
         singInPageFlow.clickNextAuthButton();
     }
 
-    @And("Ввод пароля")
-    public void setPassword() {
-        singInPageFlow.setValuePassword(userConfig.pass());
+    @And("Ввод пароля юзера {string}")
+    public void setPassword(String email) {
+        singInPageFlow.setValuePassword(new UserController().getUserPass(email));
     }
 
     @And("Нажать на кнопку Войти")
@@ -38,12 +39,12 @@ public class LoginSteps extends PagesUtils {
         singInPageFlow.clickSubmitLoginButton();
     }
 
-    @When("Авторизация")
-    public void auth() {
+    @When("Авторизация юзера {string}")
+    public void auth(String login) {
         clickLogInButton();
-        setValueLoginEmail();
+        setValueLoginEmail(login);
         clickNextButton();
-        setPassword();
+        setPassword(login);
         clickEnterButton();
     }
 }

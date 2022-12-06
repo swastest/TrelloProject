@@ -13,10 +13,10 @@ public class AllBoardsSteps extends PagesUtils {
         mainBoardPageFlow.checkAllBoards(text2);
     }
 
-    @Then("Проверка имени аккаунта")
-    public void checkAccountName() {
+    @Then("Проверка имени аккаунта {string}")
+    public void checkAccountName(String profileName) {
         mainBoardPageFlow.clickProfileButton();
-        mainBoardPageFlow.checkUserName("Тaтьяна Казакова");
+        mainBoardPageFlow.checkUserName(profileName);
     }
 
     @Then("Все активные доски отображаются на экране AllBoards")

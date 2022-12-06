@@ -28,7 +28,7 @@ public class Ex1 {
     static Response setResponseAuth() {
         Response r = given()
                 .queryParam("key", userConfig.apiKey())
-                .queryParam("token", userConfig.token())
+                .queryParam("token", userConfig.secretToken())
                 .get("https://api.trello.com/1/members/me")
                 .then().log().all()
                 .statusCode(200)
@@ -43,7 +43,7 @@ public class Ex1 {
     static void deleteCard(String cardId) {
         given()
                 .queryParam("key", userConfig.apiKey())
-                .queryParam("token", userConfig.token())
+                .queryParam("token", userConfig.secretToken())
                 .delete(userConfig.url() + "/1/boards/" + cardId)
                 .then().log().all().statusCode(200);
     }
