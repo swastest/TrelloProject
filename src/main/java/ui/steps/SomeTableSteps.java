@@ -2,6 +2,7 @@ package ui.steps;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import utils.PagesUtils;
 
 public class SomeTableSteps extends PagesUtils {
@@ -36,7 +37,7 @@ public class SomeTableSteps extends PagesUtils {
         someTableFlow.confirmAddedText(2);
     }
 
-    @And("Нажать на кнопку добавить карточку, в колонке {string}")
+    @When("Нажать на кнопку добавить карточку, в колонке {string}")
     public void clickAddNewCard(String arg0) {
         someTableFlow.clickAddCard(arg0);
     }

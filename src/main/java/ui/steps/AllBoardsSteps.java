@@ -2,6 +2,7 @@ package ui.steps;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import utils.PagesUtils;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class AllBoardsSteps extends PagesUtils {
         }
     }
 
-    @And("Нажать на кнопку перехода на доску")
+    @When("Нажать на кнопку перехода на доску")
     public void clickOnTable() {
         mainBoardPageFlow.clickOnTable();
     }

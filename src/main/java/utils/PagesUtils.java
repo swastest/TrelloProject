@@ -1,10 +1,13 @@
 package utils;
 
+import api.precondition.BoardsPrecondition;
 import configProperties.UserProperties;
 import org.aeonbits.owner.ConfigFactory;
 import ui.flow.*;
 
 public abstract class PagesUtils {
+    protected BoardsPrecondition boardsPrecondition = new BoardsPrecondition();
+
     protected HomePageFlow homePageFlow = new HomePageFlow();
     protected MainPageFlow mainPageFlow = new MainPageFlow();
     protected SingInPageFlow singInPageFlow = new SingInPageFlow();

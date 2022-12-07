@@ -1,11 +1,24 @@
 package ui.steps;
 
+import api.models.ResponseBoards;
 import io.cucumber.java.en.Then;
 import utils.PagesUtils;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class HomePageSteps extends PagesUtils {
     @Then("Проверка HomePage {string}")
     public void checkHomePage(String header) {
         homePageFlow.checkHeaderName(header);
+    }
+
+    @Then("Проверка открытых досок пользователя {string}")
+    public void checkAllActualBoards(String login) {
+        List<String> expectResult = boardsPrecondition.boards(login).stream().filter(e -> e.getClosed() != true)
+                .map(e -> e.getName()).collect(Collectors.toList());
+        for (String e : expectResult) {
+            homePageFlow.checkHeaderName(e);
+        }
     }
 }

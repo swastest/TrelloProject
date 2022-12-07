@@ -39,7 +39,7 @@ public class LoginSteps extends PagesUtils {
         singInPageFlow.clickSubmitLoginButton();
     }
 
-    @When("Авторизация юзера {string}")
+    @Given ("Юзер {string} авторизирован")
     public void auth(String login) {
         clickLogInButton();
         setValueLoginEmail(login);

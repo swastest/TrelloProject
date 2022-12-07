@@ -17,6 +17,6 @@ public class MainBoardsPage {
     private ElementsCollection spaseBoards = $$(".boards-page-board-section-list");
 
  //   @FindBy(css = "[title='Argentina Ullrich']")
-    private SelenideElement tableButton = $("[title='Argentina Ullrich']").parent().parent();
+    private SelenideElement tableButton = $("a[href*='helloworld']");
   //  private SelenideElement tableButton = $("[title='Argentina Ullrich']").ancestor("a");
 }

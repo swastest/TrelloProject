@@ -41,7 +41,7 @@ public class TestApi {
                 .statusCode(200)
                 .extract().as(ProfileResponse.class);
         Assertions.assertThat(r.getAvatarUrl()).contains("trello");
-        Assertions.assertThat(r.getInitials()).isEqualTo("ТК");
+        Assertions.assertThat(r.getInitials()).isEqualTo("T");
 
     }
 

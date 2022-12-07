@@ -44,20 +44,20 @@ public class SomeTableFlow {
         return this;
     }
 
-    public SomeTableFlow clickAddCard (String columnName){
-        final Column columnElement = page(SomeTable.class).getTrelloColumn().stream()
-                .map(Column::new)
-                .filter(column -> column.getColumnTitle().equals(columnName))
-                .findFirst()
-                .orElseThrow();
-        columnElement.clickAddCardButton();
-        return this;
-    }
-//
 //    public SomeTableFlow clickAddCard (String columnName){
-//        new Column(getColumnString(columnName)).clickAddCardButton();
+//        final Column columnElement = page(SomeTable.class).getTrelloColumn().stream()
+//                .map(Column::new)
+//                .filter(column -> column.getColumnTitle().equals(columnName))
+//                .findFirst()
+//                .orElseThrow();
+//        columnElement.clickAddCardButton();
 //        return this;
 //    }
+
+    public SomeTableFlow clickAddCard (String columnName){
+        new Column(getColumnString(columnName)).clickAddCardButton();
+        return this;
+    }
 
     public SomeTableFlow setTextInNewCard(String columnName, String text){
         new Column(getColumnString(columnName)).selValInNexCard(text);

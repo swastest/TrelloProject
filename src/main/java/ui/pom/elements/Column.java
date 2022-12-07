@@ -1,6 +1,5 @@
 package ui.pom.elements;
 
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class Column {
