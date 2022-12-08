@@ -13,12 +13,5 @@ public class HomePageSteps extends PagesUtils {
         homePageFlow.checkHeaderName(header);
     }
 
-    @Then("Проверка открытых досок пользователя {string}")
-    public void checkAllActualBoards(String login) {
-        List<String> expectResult = boardsPrecondition.boards(login).stream().filter(e -> e.getClosed() != true)
-                .map(e -> e.getName()).collect(Collectors.toList());
-        for (String e : expectResult) {
-            homePageFlow.checkHeaderName(e);
-        }
-    }
+
 }
