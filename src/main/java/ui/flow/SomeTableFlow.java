@@ -1,8 +1,6 @@
 package ui.flow;
 
-import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.assertj.core.api.Assertions;
 import ui.pom.elements.Column;

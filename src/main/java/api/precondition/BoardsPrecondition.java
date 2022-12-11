@@ -37,9 +37,9 @@ public class BoardsPrecondition {
                 .queryParam("key", u.getUserKey(login))
                 .queryParam("token", u.getUserToken(login))
                 .pathParam("idBoard", idBoard)
-                .delete("https://api.trello.com"+EndPoints.DELETE_BOARD.getPath())
-                .then()
+                .when().log().all()
+                .delete("https://api.trello.com"+EndPoints.DELETE_BOARD.getPath()+"{idBoard}")
+                .then().log().all()
                 .statusCode(200);
-
     }
 }

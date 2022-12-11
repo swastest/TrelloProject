@@ -6,35 +6,35 @@ import io.cucumber.java.en.When;
 import utils.PagesUtils;
 
 public class SomeTableSteps extends PagesUtils {
-    @And("Проверка имени первой колонки")
-    public void checkFirstColumnName() {
-        someTableFlow.checkColumnName(0,"Нужно сделать");
+
+    @When("Проверка имени {int} колонки, соответствует {string}")
+    public void checkFirstColumnName(int columnNumber, String columnName) {
+        someTableFlow.checkColumnName(columnNumber, columnName);
     }
 
-    // And Проверка имени колонки '0', соответствует тексту "Нужно сделать"
-    @And("Проверка имени колонки {string}, соответствует тексту {string}")
+    @When("Проверка имени колонки {string}, соответствует тексту {string}")
     public void checkColumnName(int arg0, String arg1) {
         someTableFlow.checkColumnName(arg0,arg1);
     }
 
-    @And("Нажать на кнопку добавить карточку")
-    public void clickAddNewCard() {
-        someTableFlow.clickAddCard(2);
+    @When("Нажать на кнопку добавить карточку, в колонке {int}")
+    public void clickAddNewCard(int columnNumber) {
+        someTableFlow.clickAddCard(columnNumber);
     }
 
-    @And("Ввод текста в новую карточку {string}")
-    public void setValueInTextAriaNewCard(String arg0) {
-        someTableFlow.setTextInNewCard(2, arg0);
+    @When("Ввод текста в новую карточку {string}, в колонке {int}")
+    public void setValueInTextAriaNewCard(String arg0, int columnNumber) {
+        someTableFlow.setTextInNewCard(columnNumber, arg0);
     }
 
-    @Then("Проверка что текст {string} отображается в колонке")
-    public void checkContentInColumn(String arg0) {
-        someTableFlow.checkColumnContent(2,arg0);
+    @Then("Проверка что текст {string} отображается в колонке {int}")
+    public void checkContentInColumn(String arg0, int columnNumber) {
+        someTableFlow.checkColumnContent(columnNumber,arg0);
     }
 
-    @And("Подтвердить добавление новой записи")
-    public void confirmAddNewCard() {
-        someTableFlow.confirmAddedText(2);
+    @And("Подтвердить добавление новой записи, в колонке {int}")
+    public void confirmAddNewCard(int columnNumber) {
+        someTableFlow.confirmAddedText(columnNumber);
     }
 
     @When("Нажать на кнопку добавить карточку, в колонке {string}")

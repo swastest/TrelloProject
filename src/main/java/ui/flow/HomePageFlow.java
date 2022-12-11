@@ -20,8 +20,4 @@ public class HomePageFlow {
         Selenide.page(HomePage.class).checkUserName(text);
         return this;
     }
-
-
-
-
 }

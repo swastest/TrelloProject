@@ -20,4 +20,5 @@ public class Tests extends PagesUtils {
        $$("div#board .list").findBy(Condition.text("В процессе")).$("a.open-card-composer").click();
        int a = 0;
     }
+
 }

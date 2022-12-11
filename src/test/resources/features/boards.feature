@@ -4,11 +4,7 @@ Feature: Доски авторизованного пользователя
 
 
   Scenario Outline: Проверка главной страницы Boards
-    When Нажать на кнопку Log In
-    And Ввод в поле логин "nid.swastest@gmail.com"
-    And Нажать на кнопку продолжить
-    And Ввод пароля юзера "nid.swastest@gmail.com"
-    And Нажать на кнопку Войти
+    Given Юзер "nid.swastest@gmail.com" авторизирован
     Then Проверка основного экрана досок <text1>, <text2>
     Examples:
       | text1                       | text2   |
@@ -23,3 +19,4 @@ Feature: Доски авторизованного пользователя
     Given Создать новую доску "НоваяДоска" юзером "nid.swastest@gmail.com"
     Given Юзер "nid.swastest@gmail.com" авторизирован
     Then Проверка, что новая доска "НоваяДоска" отображается на домашнем экране
+    Then Удаление добавленной доски "НоваяДоска" юзером "nid.swastest@gmail.com"
