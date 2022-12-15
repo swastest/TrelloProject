@@ -9,7 +9,7 @@ public class SomeTableSteps extends PagesUtils {
 
     @When("Проверка имени {int} колонки, соответствует {string}")
     public void checkFirstColumnName(int columnNumber, String columnName) {
-        someTableFlow.checkColumnName(columnNumber, columnName);
+        someTableFlow.checkColumnName(columnNumber-1, columnName);
     }
 
     @When("Проверка имени колонки {string}, соответствует тексту {string}")

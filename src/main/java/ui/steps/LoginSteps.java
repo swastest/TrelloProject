@@ -4,16 +4,16 @@ import com.codeborne.selenide.Selenide;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import utils.PagesUtils;
-import utils.UserController;
+import utils.testData.Users;
 
 public class LoginSteps extends PagesUtils {
 
-    @Given("Юзер {string} авторизирован")
-    public void auth(String login) {
+    @Given("Юзер {} авторизирован")
+    public void auth(Users user) {
         clickLogInButton();
-        setValueLoginEmail(login);
+        setValueLoginEmail(user);
         clickNextButton();
-        setPassword(login);
+        setPassword(user);
         clickEnterButton();
     }
 
@@ -27,9 +27,9 @@ public class LoginSteps extends PagesUtils {
         mainPageFlow.clickSingInButton();
     }
 
-    @When("Ввод в поле логин {string}")
-    public void setValueLoginEmail(String email) {
-        singInPageFlow.setValueEmailLogin(email);
+    @When("Ввод в поле логин юзера {}")
+    public void setValueLoginEmail(Users email) {
+        singInPageFlow.setValueEmailLogin(email.getLogin());
     }
 
     @When("Нажать на кнопку продолжить")
@@ -37,9 +37,9 @@ public class LoginSteps extends PagesUtils {
         singInPageFlow.clickNextAuthButton();
     }
 
-    @When("Ввод пароля юзера {string}")
-    public void setPassword(String email) {
-        singInPageFlow.setValuePassword(new UserController().getUserPass(email));
+    @When("Ввод пароля юзера {}")
+    public void setPassword(Users password) {
+        singInPageFlow.setValuePassword(password.getPassword());
     }
 
     @When("Нажать на кнопку Войти")

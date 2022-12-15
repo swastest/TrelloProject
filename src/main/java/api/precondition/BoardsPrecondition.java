@@ -1,29 +1,28 @@
 package api.precondition;
 
 import api.models.ResponseBoards;
-import utils.UserController;
 import utils.testData.EndPoints;
+import utils.testData.Users;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 
 public class BoardsPrecondition {
-    UserController u = new UserController();
 
-    public ResponseBoards[] boards(String login) {
+    public ResponseBoards[] boards(Users users) {
         return given()
-                .queryParam("key", u.getUserKey(login))
-                .queryParam("token", u.getUserToken(login))
+                .queryParam("key", users.getKey())
+                .queryParam("token", users.getToken())
                 .get("https://api.trello.com" + EndPoints.ALL_BOARDS.getPath())
                 .then().log().all()
                 .statusCode(200)
                 .extract().as(ResponseBoards[].class);
     }
 
-    public void createBoard(String login, String boardName) {
+    public void createBoard(Users users, String boardName) {
         given()
-                .queryParam("key", u.getUserKey(login))
-                .queryParam("token", u.getUserToken(login))
+                .queryParam("key", users.getKey())
+                .queryParam("token", users.getToken())
                 .queryParam("name", boardName)
                 .contentType(JSON)
                 .when().log().all()
@@ -32,10 +31,10 @@ public class BoardsPrecondition {
                 .statusCode(200);
     }
 
-    public void deleteBoard(String login, String idBoard) {
+    public void deleteBoard(Users users, String idBoard) {
         given()
-                .queryParam("key", u.getUserKey(login))
-                .queryParam("token", u.getUserToken(login))
+                .queryParam("key", users.getKey())
+                .queryParam("token", users.getToken())
                 .pathParam("idBoard", idBoard)
                 .when().log().all()
                 .delete("https://api.trello.com"+EndPoints.DELETE_BOARD.getPath()+"{idBoard}")

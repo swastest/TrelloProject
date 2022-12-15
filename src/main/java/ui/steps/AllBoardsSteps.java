@@ -4,6 +4,7 @@ import api.models.ResponseBoards;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import utils.PagesUtils;
+import utils.testData.Users;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,8 +17,8 @@ public class AllBoardsSteps extends PagesUtils {
         mainBoardPageFlow.clickOnTable();
     }
 
-    @Then("Проверка открытых досок пользователя {string}")
-    public void checkAllActualBoards(String login) {
+    @Then("Проверка открытых досок пользователя {}")
+    public void checkAllActualBoards(Users login) {
         List<String> expectResult = Arrays.stream(boardsPrecondition.boards(login)).filter(e -> e.getClosed() != true)
                 .map(ResponseBoards::getName).collect(Collectors.toList());
         for (String e : expectResult) {
