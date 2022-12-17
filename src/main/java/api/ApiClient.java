@@ -56,17 +56,17 @@ public class ApiClient {
         return this;
     }
 
-    public ApiClient addContentTypeJson(){
+    public ApiClient addContentTypeJson() {
         requestSpecBuilder.setContentType(ContentType.JSON);
         return this;
     }
 
-    public ApiClient addContentTypeForFormParam(){
+    public ApiClient addContentTypeForFormParam() {
         requestSpecBuilder.setContentType(ContentType.URLENC);
         return this;
     }
 
-    public ApiClient addFormParam(String key, String value){
+    public ApiClient addFormParam(String key, String value) {
         requestSpecBuilder.addFormParam(key, value);
         return this;
     }
