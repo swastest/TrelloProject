@@ -19,7 +19,8 @@ public class AllBoardsSteps extends PagesUtils {
 
     @Then("Проверка открытых досок пользователя {}")
     public void checkAllActualBoards(Users login) {
-        List<String> expectResult = Arrays.stream(boardsPrecondition.boards(login)).filter(e -> e.getClosed() != true)
+        List<String> expectResult = boardController.getAllBoardsList(login,200).stream()
+                .filter(e -> e.getClosed() != true)
                 .map(ResponseBoards::getName).collect(Collectors.toList());
         for (String e : expectResult) {
             mainBoardPageFlow.checkAllBoards(e);

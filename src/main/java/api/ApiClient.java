@@ -16,7 +16,8 @@ import static io.restassured.config.EncoderConfig.encoderConfig;
 import static io.restassured.config.RestAssuredConfig.newConfig;
 
 public class ApiClient {
-    private RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder()
+
+    private final RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder()
             .setConfig(newConfig().encoderConfig(encoderConfig()
                     .defaultContentCharset(StandardCharsets.UTF_8)))
             .setBaseUri("https://api.trello.com")
@@ -38,6 +39,11 @@ public class ApiClient {
 
     public ApiClient addQueryParam(String key, String value) {
         requestSpecBuilder.addQueryParam(key, value);
+        return this;
+    }
+
+    public ApiClient addPathParam(String pathParam) {
+        requestSpecBuilder.addPathParam("pathParam", pathParam);
         return this;
     }
 
