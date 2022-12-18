@@ -15,8 +15,9 @@ public class ApiSteps extends PagesUtils {
 
     @Then("Удаление добавленной доски {string} юзером {}")
     public void deleteNewAddedBoard(String boardName, Users userName) {
-      String a = String.valueOf(Arrays.stream(boardsPrecondition.boards(userName))
-              .filter(e->e.getName().equals(boardName)).filter(e->e.getClosed()!=true).map(e->e.getId()).findFirst().get().toString());
+      String a = Arrays.stream(boardsPrecondition.boards(userName))
+              .filter(e -> e.getName().equals(boardName)).filter(e -> e.getClosed() != true)
+              .map(e -> e.getId()).findFirst().get();
       boardsPrecondition.deleteBoard(userName,a);
     }
 }

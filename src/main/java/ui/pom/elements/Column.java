@@ -31,7 +31,7 @@ public class Column {
         root.$(ADD_CARD_BUTTON).click();
     }
 
-    public void selValInNexCard(String text) {
+    public void setValueInNexCard(String text) {
         root.$(INPUT_TXT).val(text);
     }
 

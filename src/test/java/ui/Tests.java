@@ -8,8 +8,7 @@ import utils.PagesUtils;
 import utils.testData.EndPoints;
 import utils.testData.Users;
 
-import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class Tests extends PagesUtils {
     @Test
