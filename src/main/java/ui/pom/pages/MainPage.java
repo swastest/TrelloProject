@@ -6,6 +6,6 @@ import org.openqa.selenium.support.FindBy;
 
 @Getter
 public class MainPage {
-    @FindBy(xpath = "//a[text()='Log in']")
+    @FindBy(css = "a[href='/login']")
     private SelenideElement singInButton;
 }

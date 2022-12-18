@@ -1,5 +1,6 @@
 package ui.flow;
 
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.assertj.core.api.Assertions;
@@ -19,7 +20,7 @@ public class SomeTableFlow {
         return this;
     }
     public SomeTableFlow setTextInNewCard(Integer integer, String text){
-        new Column(page(SomeTable.class).getTrelloColumn().get(integer)).selValInNexCard(text);
+        new Column(page(SomeTable.class).getTrelloColumn().get(integer)).setValueInNexCard(text);
         return this;
     }
 
@@ -42,15 +43,16 @@ public class SomeTableFlow {
         return this;
     }
 
-//    public SomeTableFlow clickAddCard (String columnName){
-//        final Column columnElement = page(SomeTable.class).getTrelloColumn().stream()
-//                .map(Column::new)
-//                .filter(column -> column.getColumnTitle().equals(columnName))
-//                .findFirst()
-//                .orElseThrow();
-//        columnElement.clickAddCardButton();
-//        return this;
-//    }
+    public SomeTableFlow clickAddCard12 (String columnName){
+        final Column columnElement = page(SomeTable.class).getTrelloColumn()
+                .shouldHave(CollectionCondition.sizeGreaterThan(0)).stream()
+                .map(Column::new)
+                .filter(column -> column.getColumnTitle().equals(columnName))
+                .findFirst()
+                .orElseThrow();
+        columnElement.clickAddCardButton();
+        return this;
+    }
 
     public SomeTableFlow clickAddCard (String columnName){
         new Column(getColumnString(columnName)).clickAddCardButton();
@@ -58,7 +60,7 @@ public class SomeTableFlow {
     }
 
     public SomeTableFlow setTextInNewCard(String columnName, String text){
-        new Column(getColumnString(columnName)).selValInNexCard(text);
+        new Column(getColumnString(columnName)).setValueInNexCard(text);
         return this;
     }
     public SomeTableFlow confirmAddedText(String columnName){
