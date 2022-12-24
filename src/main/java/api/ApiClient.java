@@ -1,12 +1,13 @@
 package api;
 
+import configProperties.UserProperties;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import utils.testData.EndPoints;
+import org.aeonbits.owner.ConfigFactory;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
@@ -17,18 +18,19 @@ import static io.restassured.config.RestAssuredConfig.newConfig;
 
 public class ApiClient {
 
+    UserProperties userProperties = ConfigFactory.create(UserProperties.class,System.getProperties());
     private final RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder()
             .setConfig(newConfig().encoderConfig(encoderConfig()
                     .defaultContentCharset(StandardCharsets.UTF_8)))
-            .setBaseUri("https://api.trello.com")
+            .setBaseUri(userProperties.uri())
             .log(LogDetail.ALL);
 
     private RequestSpecification requestSpec;
 
-    public Response sendRequest(Method method, int expectedStatusCode, EndPoints endPoints, Object... params) {
+    public Response sendRequest(Method method, int expectedStatusCode, String endPoint, Object... pathParams) {
         return given()
                 .spec(requestSpec)
-                .request(method, endPoints.getPath(), params)
+                .request(method, endPoint, pathParams)
                 .then().log().all().statusCode(expectedStatusCode).extract().response();
     }
 

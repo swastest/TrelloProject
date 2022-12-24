@@ -6,7 +6,7 @@ import configProperties.UserProperties;
 import org.aeonbits.owner.ConfigFactory;
 import ui.flow.*;
 
-public abstract class PagesUtils {
+public class PagesUtils {
 
     protected HomePageFlow homePageFlow = new HomePageFlow();
     protected MainPageFlow mainPageFlow = new MainPageFlow();
@@ -16,4 +16,5 @@ public abstract class PagesUtils {
     protected UserProperties userConfig = ConfigFactory.create(UserProperties.class, System.getProperties());
     protected BoardController boardController = new BoardController();
     protected ListController listController = new ListController();
+
 }

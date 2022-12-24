@@ -9,6 +9,7 @@ public interface UserProperties extends Config {
     String tokenCard();
     String tokenCard01();
     String url();
+    String uri();
     String email();
     String pass();
 }

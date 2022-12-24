@@ -5,7 +5,10 @@ import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(plugin = "pretty",
+@CucumberOptions(plugin = {"pretty",
+        "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
+        "timeline:test-output-thread/"},
+        glue= {"src/main/java/utils/PagesUtils.java"},
         features = {"src/test/resources/features/boards.feature",
                 "src/test/resources/features/login.feature",
                 "src/test/resources/features/card.feature",

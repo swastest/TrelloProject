@@ -1,13 +1,18 @@
 package ui.steps;
 
 import api.models.ResponseBoards;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import utils.PagesUtils;
 import utils.testData.Users;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ApiSteps extends PagesUtils {
@@ -33,7 +38,9 @@ public class ApiSteps extends PagesUtils {
         Assertions.assertTrue(s.contains(boardName));
         String boardId = bList.stream().filter(e->e.getName().equals(boardName))
                 .map(e->e.getId()).collect(Collectors.toList()).get(0);
-        boardController.deleteTable(users,boardId,200);
+
+        context.put(users, Collections.singletonList(boardId));
+     //   boardController.deleteTable(users,boardId,200);
     }
 
     @When("Пользователь {} добавил новую колонну {string} на доску {string}")
@@ -50,5 +57,18 @@ public class ApiSteps extends PagesUtils {
         List <String> s = listController.getAllListsOnBoard(user,boardId,200).stream()
                 .map(e->e.getName()).collect(Collectors.toList());
         Assertions.assertTrue(s.contains(columnName));
+    }
+
+    public Map<Users, List<String>> context;
+
+    @Before(order = 1)
+    public void startMethod(){
+        context = new HashMap<>();
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+    }
+
+    @After
+    public void lastMethod(){
+        context.forEach((k, v)->v.forEach(id->boardController.deleteTable(k, id,200)));
     }
 }
