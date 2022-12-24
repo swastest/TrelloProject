@@ -3,7 +3,6 @@ package ui.steps;
 import com.codeborne.selenide.Selenide;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
-import utils.PagesUtils;
 import utils.testData.Users;
 
 public class LoginSteps extends PagesUtils {

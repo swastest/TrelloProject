@@ -1,3 +1,4 @@
+@UI
 Feature: Login user
 
   Background: Открыта главная страница сайта

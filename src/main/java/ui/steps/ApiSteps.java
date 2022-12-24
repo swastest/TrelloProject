@@ -6,7 +6,6 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
-import utils.PagesUtils;
 import utils.testData.Users;
 
 import java.util.Collections;
@@ -40,7 +39,6 @@ public class ApiSteps extends PagesUtils {
                 .map(e->e.getId()).collect(Collectors.toList()).get(0);
 
         context.put(users, Collections.singletonList(boardId));
-     //   boardController.deleteTable(users,boardId,200);
     }
 
     @When("Пользователь {} добавил новую колонну {string} на доску {string}")
@@ -61,13 +59,13 @@ public class ApiSteps extends PagesUtils {
 
     public Map<Users, List<String>> context;
 
-    @Before(order = 1)
+    @Before(order = 1, value = "API")
     public void startMethod(){
         context = new HashMap<>();
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
     }
 
-    @After
+    @After(order = 9999, value = "API")
     public void lastMethod(){
         context.forEach((k, v)->v.forEach(id->boardController.deleteTable(k, id,200)));
     }

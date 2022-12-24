@@ -3,10 +3,8 @@ package ui.steps;
 import api.models.ResponseBoards;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import utils.PagesUtils;
 import utils.testData.Users;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
