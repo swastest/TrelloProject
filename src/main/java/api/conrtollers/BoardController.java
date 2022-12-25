@@ -3,8 +3,6 @@ package api.conrtollers;
 import api.ApiClient;
 import api.models.ResponseBoards;
 import io.restassured.http.Method;
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
 import utils.testData.Users;
 
 import java.util.List;
@@ -12,39 +10,31 @@ import java.util.List;
 public class BoardController {
 
     public List<ResponseBoards> getAllBoardsList(Users user, int expectedStatusCode) {
-        String endPointAllBoards = "/1/members/me/boards";
+        String endPointAllBoards = "/1/members/me/boards?key={key}&token={token}";
 
-        ApiClient api = new ApiClient();
-        Response r = api.addContentTypeJson()
-                .addQueryParam("key", user.getKey())
-                .addQueryParam("token", user.getToken())
+        return new ApiClient().addContentTypeJson()
                 .build()
-                .sendRequest(Method.GET, expectedStatusCode, endPointAllBoards);
-        JsonPath jsonPath = r.jsonPath();
-        return jsonPath.getList(".", ResponseBoards.class);
+                .sendRequest(Method.GET, expectedStatusCode, endPointAllBoards,
+                        user.getKey(), user.getToken()).jsonPath().getList(".", ResponseBoards.class);
     }
 
     public ResponseBoards createBoard(Users user, String boardName, int expectedStatusCode) {
-        String endPointCreateBoard = "/1/boards";
+        String endPointCreateBoard = "/1/boards?key={key}&token={token}";
 
-        Response response = new ApiClient().addContentTypeJson()
-                .addQueryParam("key", user.getKey())
-                .addQueryParam("token", user.getToken())
+        return new ApiClient().addContentTypeJson()
                 .addQueryParam("name", boardName)
                 .build()
-                .sendRequest(Method.POST, expectedStatusCode, endPointCreateBoard);
-        return response.jsonPath().getObject(".", ResponseBoards.class);
+                .sendRequest(Method.POST, expectedStatusCode, endPointCreateBoard,
+                        user.getKey(), user.getToken()).jsonPath().getObject(".", ResponseBoards.class);
     }
 
     public void deleteTable(Users user, String idBoard, int expectedStatusCode) {
-        String endPointDeleteBoard = "/1/boards/{pathParam}";
+        String endPointDeleteBoard = "/1/boards/{pathParam}?key={key}&token={token}";
 
         new ApiClient().addContentTypeJson()
-                .addQueryParam("key", user.getKey())
-                .addQueryParam("token", user.getToken())
-                .addPathParam(idBoard)
                 .build()
-                .sendRequest(Method.DELETE, expectedStatusCode, endPointDeleteBoard);
+                .sendRequest(Method.DELETE, expectedStatusCode, endPointDeleteBoard,
+                        idBoard, user.getKey(), user.getToken());
     }
 
 }
