@@ -4,13 +4,15 @@ plugins {
     id "io.qameta.allure" version "2.9.6"
     id "io.freefair.lombok" version "6.0.0-m2"
     id 'org.gradle.test-retry' version '1.0.0'
+    id "com.commercehub.cucumber-jvm" version "0.11"
 }
+
 
 repositories {
     mavenCentral()
 }
 
-def selenideVersion = "6.3.5",
+def selenideVersion = "6.10.2",
     junitVersion = "5.8.2",
     slfVersion = "1.7.36",
     ownerVersion = "1.0.4",
@@ -37,6 +39,7 @@ dependencies {
             "com.codeborne:selenide:$selenideVersion",
             "io.qameta.allure:allure-selenide:$allureVersion",
             "org.junit.jupiter:junit-jupiter:$junitVersion",
+            "org.junit.vintage:junit-vintage-engine:$junitVersion",
             "com.github.javafaker:javafaker:$fakerVersion",
             "org.slf4j:slf4j-simple:$slfVersion",
             "io.qameta.allure:allure-rest-assured:$allureVersion",

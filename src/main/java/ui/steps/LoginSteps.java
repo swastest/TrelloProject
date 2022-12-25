@@ -1,6 +1,9 @@
 package ui.steps;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import utils.testData.Users;
@@ -46,4 +49,15 @@ public class LoginSteps extends PagesUtils {
         singInPageFlow.clickSubmitLoginButton();
     }
 
+
+    @Before
+    public static void beforeMethod(){
+        System.out.println("++++++++++++++ _________------------");
+        Configuration.browserSize = "1800x500";
+    }
+    @After
+    public void afterMethod(){
+        Selenide.closeWebDriver();
+        System.out.println("++++++++++++++ _________------------");
+    }
 }

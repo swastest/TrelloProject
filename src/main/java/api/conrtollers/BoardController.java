@@ -23,6 +23,7 @@ public class BoardController {
 
         return new ApiClient().addContentTypeJson()
                 .addQueryParam("name", boardName)
+                .addQueryParam("idOrganization","638cdc0a8f3b9301e26a53e5")
                 .build()
                 .sendRequest(Method.POST, expectedStatusCode, endPointCreateBoard,
                         user.getKey(), user.getToken()).jsonPath().getObject(".", ResponseBoards.class);
