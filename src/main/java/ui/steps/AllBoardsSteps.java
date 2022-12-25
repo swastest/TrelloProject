@@ -3,11 +3,13 @@ package ui.steps;
 import api.models.ResponseBoards;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import lombok.extern.slf4j.Slf4j;
 import utils.testData.Users;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class AllBoardsSteps extends PagesUtils {
 
     @When("Нажать на кнопку перехода на доску")
@@ -38,6 +40,7 @@ public class AllBoardsSteps extends PagesUtils {
 
     @Then("Проверка имени аккаунта {string}")
     public void checkAccountName(String profileName) {
+        log.info("Проверка");
         mainBoardPageFlow.clickProfileButton();
         mainBoardPageFlow.checkUserName(profileName);
     }

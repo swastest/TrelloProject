@@ -14,7 +14,7 @@ repositories {
 
 def selenideVersion = "6.10.2",
     junitVersion = "5.8.2",
-    slfVersion = "1.7.36",
+    slfVersion = "2.0.6",
     ownerVersion = "1.0.4",
     fakerVersion = "1.0.2",
     allureVersion = "2.17.3"
@@ -38,18 +38,19 @@ dependencies {
     implementation(
             "com.codeborne:selenide:$selenideVersion",
             "io.qameta.allure:allure-selenide:$allureVersion",
+            "io.qameta.allure:allure-cucumber-jvm:$allureVersion",
+            "io.qameta.allure:allure-rest-assured:$allureVersion",
             "org.junit.jupiter:junit-jupiter:$junitVersion",
             "org.junit.vintage:junit-vintage-engine:$junitVersion",
             "com.github.javafaker:javafaker:$fakerVersion",
-            "org.slf4j:slf4j-simple:$slfVersion",
-            "io.qameta.allure:allure-rest-assured:$allureVersion",
+            "org.slf4j:slf4j-api:$slfVersion",
             "io.rest-assured:rest-assured:4.5.1",
-            'org.postgresql:postgresql:42.1.4',
-            'org.springframework:spring-jdbc:5.3.20',
             "org.aeonbits.owner:owner:$ownerVersion",
             'io.cucumber:cucumber-java:7.8.0',
             'io.cucumber:cucumber-junit:7.8.0',
-            'org.assertj:assertj-core:3.22.0'
+            'org.assertj:assertj-core:3.22.0',
+  //          'org.slf4j:slf4j-simple:2.0.6',
+            'ch.qos.logback:logback-classic:1.4.5'
     )
 }
 

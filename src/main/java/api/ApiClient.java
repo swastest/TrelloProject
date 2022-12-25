@@ -1,6 +1,7 @@
 package api;
 
 import configProperties.UserProperties;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
@@ -15,6 +16,7 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 import static io.restassured.config.EncoderConfig.encoderConfig;
 import static io.restassured.config.RestAssuredConfig.newConfig;
+import static utils.CustomApiListener.withCustomTemplates;
 
 public class ApiClient {
 
@@ -30,6 +32,7 @@ public class ApiClient {
     public Response sendRequest(Method method, int expectedStatusCode, String endPoint, Object... pathParams) {
         return given()
                 .spec(requestSpec)
+                .filter(withCustomTemplates())
                 .request(method, endPoint, pathParams)
                 .then().log().all().statusCode(expectedStatusCode).extract().response();
     }
