@@ -7,7 +7,15 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(plugin = {"pretty"},
         //      glue= {"src/main/java/ui/steps"},
-        features = {"src/test/resources/features"})
+        features = {"src/test/resources/features"}
+     //   tags = "@API, @UI"
+)
 public class RunCucumberTest {
-
 }
+
+/*
+* как запускать тесты по тегам?
+* как вынести before and after методы в отдельный класс?
+* вопросы по поводу glue
+* вопрос по аннтотации Step
+* */

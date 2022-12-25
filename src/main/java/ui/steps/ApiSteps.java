@@ -5,7 +5,9 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
+import utils.testData.PagesUtils;
 import utils.testData.Users;
 
 import java.util.Collections;
@@ -14,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class ApiSteps extends PagesUtils {
 
     @When("Пользователь {} добавляет доску {string}")
@@ -38,7 +41,6 @@ public class ApiSteps extends PagesUtils {
                 .map(e -> e.getId()).collect(Collectors.toList()).get(0);
 
         context.put(users, Collections.singletonList(boardId));
-        int a =0;
     }
 
     @When("Пользователь {} добавил новую колонну {string} на доску {string}")
@@ -50,10 +52,14 @@ public class ApiSteps extends PagesUtils {
 
     @Then("Проверка, что пользователь {} видит новую  колонну {string} в списке колонн для доски {string}")
     public void checkNewColumnOnBoard(Users user, String columnName, String boardName) {
-        String boardId = boardController.getAllBoardsList(user, 200).stream().filter(e -> e.getName().equals(boardName))
+        log.info("Request boardId from allBoard");
+        String boardId = boardController.getAllBoardsList(user, 200)
+                .stream().filter(e -> e.getName().equals(boardName))
                 .map(e -> e.getId()).findFirst().orElseThrow();
+        log.info("Request list boards name");
         List<String> s = listController.getAllListsOnBoard(user, boardId, 200).stream()
                 .map(e -> e.getName()).collect(Collectors.toList());
+        log.info("Assertions contains columnName");
         Assertions.assertTrue(s.contains(columnName));
     }
 
@@ -61,12 +67,14 @@ public class ApiSteps extends PagesUtils {
 
     @Before(order = 1)
     public void startMethod() {
+        log.info("Before UI method");
         context = new HashMap<>();
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-    }
+        }
 
     @After(order = 9999)
     public void lastMethod() {
-        context.forEach((k, v) -> v.forEach(id -> boardController.deleteTable(k, id, 200)));
+        log.info("After UI method");
+        context.forEach((k, v) -> v.forEach(id -> boardController
+                .deleteTable(k, id, 200)));
     }
 }

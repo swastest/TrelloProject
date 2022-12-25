@@ -4,6 +4,7 @@ import api.models.ResponseBoards;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.extern.slf4j.Slf4j;
+import utils.testData.PagesUtils;
 import utils.testData.Users;
 
 import java.util.List;
@@ -40,7 +41,7 @@ public class AllBoardsSteps extends PagesUtils {
 
     @Then("Проверка имени аккаунта {string}")
     public void checkAccountName(String profileName) {
-        log.info("Проверка");
+        log.info("Verify account Name");
         mainBoardPageFlow.clickProfileButton();
         mainBoardPageFlow.checkUserName(profileName);
     }

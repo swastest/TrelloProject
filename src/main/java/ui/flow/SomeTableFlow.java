@@ -43,6 +43,7 @@ public class SomeTableFlow {
         return this;
     }
 
+    //alternative method with findBy
     public SomeTableFlow clickAddCard12 (String columnName){
         final Column columnElement = page(SomeTable.class).getTrelloColumn()
                 .shouldHave(CollectionCondition.sizeGreaterThan(0)).stream()
@@ -73,8 +74,11 @@ public class SomeTableFlow {
         return this;
     }
 
+    //alternative method with findBy
     public SomeTableFlow clickAddCardButtonInColumnWithTitle(String columnTitle) {
-        final Column columnElement = page(SomeTable.class).getTrelloColumn().stream()
+        final Column columnElement = page(SomeTable.class).getTrelloColumn()
+                .shouldHave(CollectionCondition.sizeGreaterThan(0))
+                .stream()
                 .map(Column::new)
                 .filter(column -> column.getColumnTitle().equals(columnTitle))
                 .findFirst()

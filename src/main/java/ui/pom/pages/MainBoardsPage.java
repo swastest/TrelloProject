@@ -13,10 +13,7 @@ public class MainBoardsPage {
     @FindBy(css = ".all-boards")
     private SelenideElement allBoards;
 
- //   @FindBy(css = ".boards-page-board-section-list")
     private ElementsCollection spaseBoards = $$(".boards-page-board-section-list");
 
- //   @FindBy(css = "[title='Argentina Ullrich']")
     private SelenideElement tableButton = $("a[href*='helloworld']");
-  //  private SelenideElement tableButton = $("[title='Argentina Ullrich']").ancestor("a");
 }

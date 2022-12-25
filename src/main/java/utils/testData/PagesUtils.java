@@ -1,17 +1,10 @@
-package ui.steps;
+package utils.testData;
 
 import api.conrtollers.BoardController;
 import api.conrtollers.ListController;
 import configProperties.UserProperties;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import org.aeonbits.owner.ConfigFactory;
 import ui.flow.*;
-import utils.testData.Users;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class PagesUtils {
 
@@ -27,14 +20,30 @@ public class PagesUtils {
 
 /*    public Map<Users, List<String>> context;
 
-    @Before(order = 1, value = "API")
+   @Before(order = 1, value = "@API")
     public void startMethod(){
         context = new HashMap<>();
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
     }
 
-    @After(order = 9999, value = "API")
+    @After(order = 9999, value = "@API")
     public void lastMethod(){
         context.forEach((k, v)->v.forEach(id->boardController.deleteTable(k, id,200)));
+    }
+
+    @Before(value = "@UI")
+    public static void beforeMethod(){
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+        System.out.println("++++++++++++++ _________------------");
+        Configuration.browserSize = "1800x500";
+    }
+    @After(value = "@UI")
+    public void afterMethod(){
+        Attach.screenshotAs("LastStep");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Selenide.closeWebDriver();
+
+        System.out.println("++++++++++++++ _________------------");
     }*/
 }

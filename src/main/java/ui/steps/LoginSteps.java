@@ -10,11 +10,12 @@ import io.cucumber.java.en.When;
 import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
 import utils.Attach;
+import utils.testData.PagesUtils;
 import utils.testData.Users;
 
 public class LoginSteps extends PagesUtils {
 
-    @Step("Авторизация юзера")
+    @Step("Авторизация {0} юзера")
     @Given("Юзер {} авторизирован")
     public void auth(Users user) {
         clickLogInButton();
@@ -24,16 +25,19 @@ public class LoginSteps extends PagesUtils {
         clickEnterButton();
     }
 
+    @Step("Открыта главная страница сайта {0}")
     @Given("Открыта главная страница сайта {string}")
     public void openSite(String url) {
         Selenide.open(url);
     }
 
+    @Step("Нажать на кнопку Log In")
     @When("Нажать на кнопку Log In")
     public void clickLogInButton() {
         mainPageFlow.clickSingInButton();
     }
 
+    @Step("Ввод в поле логин юзера {0}")
     @When("Ввод в поле логин юзера {}")
     public void setValueLoginEmail(Users email) {
         singInPageFlow.setValueEmailLogin(email.getLogin());
@@ -58,7 +62,6 @@ public class LoginSteps extends PagesUtils {
     @Before(value = "@UI")
     public static void beforeMethod(){
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-        System.out.println("++++++++++++++ _________------------");
         Configuration.browserSize = "1800x500";
     }
     @After(value = "@UI")
@@ -67,7 +70,5 @@ public class LoginSteps extends PagesUtils {
         Attach.pageSource();
         Attach.browserConsoleLogs();
         Selenide.closeWebDriver();
-
-        System.out.println("++++++++++++++ _________------------");
     }
 }
