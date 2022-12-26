@@ -13,6 +13,8 @@ import utils.Attach;
 import utils.testData.PagesUtils;
 import utils.testData.Users;
 
+import static com.codeborne.selenide.Selenide.open;
+
 public class LoginSteps extends PagesUtils {
 
     @Step("Авторизация {0} юзера")
@@ -28,7 +30,7 @@ public class LoginSteps extends PagesUtils {
     @Step("Открыта главная страница сайта {0}")
     @Given("Открыта главная страница сайта {string}")
     public void openSite(String url) {
-        Selenide.open(url);
+        open(url);
     }
 
     @Step("Нажать на кнопку Log In")
@@ -62,7 +64,8 @@ public class LoginSteps extends PagesUtils {
     @Before(value = "@UI")
     public static void beforeMethod(){
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-        Configuration.browserSize = "1800x500";
+        Configuration.browserSize = "1800x1000";
+        open(userConfig.url());
     }
     @After(value = "@UI")
     public void afterMethod(){

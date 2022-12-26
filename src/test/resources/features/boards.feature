@@ -1,8 +1,5 @@
 @UI
 Feature: Доски авторизованного пользователя
-  Background: Открыта главная страница сайта
-    Given Открыта главная страница сайта "https://trello.com"
-
 
   Scenario Outline: Проверка главной страницы Boards
     Given Юзер TEST_USER_1 авторизирован

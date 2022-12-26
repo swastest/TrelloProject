@@ -13,7 +13,7 @@ public class PagesUtils {
     protected SingInPageFlow singInPageFlow = new SingInPageFlow();
     protected MainBoardPageFlow mainBoardPageFlow = new MainBoardPageFlow();
     protected SomeTableFlow someTableFlow = new SomeTableFlow();
-    protected UserProperties userConfig = ConfigFactory.create(UserProperties.class, System.getProperties());
+    protected static UserProperties userConfig = ConfigFactory.create(UserProperties.class, System.getProperties());
     protected BoardController boardController = new BoardController();
     protected ListController listController = new ListController();
 
