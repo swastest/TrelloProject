@@ -17,6 +17,22 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class LoginSteps extends PagesUtils {
 
+
+
+    @Before(value = "@UI")
+    public static void beforeMethod(){
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+        Configuration.browserSize = "1800x1000";
+        open(userConfig.url());
+    }
+    @After(value = "@UI")
+    public void afterMethod(){
+        Attach.screenshotAs("LastStep");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Selenide.closeWebDriver();
+    }
+
     @Step("Авторизация {0} юзера")
     @Given("Юзер {} авторизирован")
     public void auth(Users user) {
@@ -60,18 +76,4 @@ public class LoginSteps extends PagesUtils {
         singInPageFlow.clickSubmitLoginButton();
     }
 
-
-    @Before(value = "@UI")
-    public static void beforeMethod(){
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-        Configuration.browserSize = "1800x1000";
-        open(userConfig.url());
-    }
-    @After(value = "@UI")
-    public void afterMethod(){
-        Attach.screenshotAs("LastStep");
-        Attach.pageSource();
-        Attach.browserConsoleLogs();
-        Selenide.closeWebDriver();
-    }
 }

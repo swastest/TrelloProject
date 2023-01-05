@@ -5,6 +5,7 @@ import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
+import io.restassured.http.Cookie;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -79,6 +80,16 @@ public class ApiClient {
 
     public ApiClient addFormParam(String key, String value) {
         requestSpecBuilder.addFormParam(key, value);
+        return this;
+    }
+
+    public ApiClient addCookies(Map<String,String> cookies){
+        requestSpecBuilder.addCookies(cookies);
+        return this;
+    }
+
+    public ApiClient addCookies(String cookie){
+        requestSpecBuilder.addCookie(cookie);
         return this;
     }
 }

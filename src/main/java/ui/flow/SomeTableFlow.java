@@ -43,7 +43,7 @@ public class SomeTableFlow {
         return this;
     }
 
-    //alternative method with findBy
+    //alternative method with stream()
     public SomeTableFlow clickAddCard12 (String columnName){
         final Column columnElement = page(SomeTable.class).getTrelloColumn()
                 .shouldHave(CollectionCondition.sizeGreaterThan(0)).stream()

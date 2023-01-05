@@ -1,5 +1,6 @@
 package ui.steps;
 
+import api.conrtollers.AuthController;
 import api.models.ResponseBoards;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -18,6 +19,30 @@ import java.util.stream.Collectors;
 
 @Slf4j
 public class ApiSteps extends PagesUtils {
+
+    public Map<Users, List<String>> context;
+    public static Map<String, String> cookies = new HashMap<>();
+
+    //если бы нужно было передавать куки
+    public static Map<String, String> getCookies(){
+        if(cookies==null) cookies = new AuthController().getAuthCookies();
+
+        return cookies;
+    }
+
+    @Before(order = 1)
+    public void startMethod() {
+        log.info("Before UI method");
+        context = new HashMap<>();
+
+    }
+
+    @After(order = 9999)
+    public void lastMethod() {
+        log.info("After UI method");
+        context.forEach((k, v) -> v.forEach(id -> boardController
+                .deleteTable(k, id, 200)));
+    }
 
     @When("Пользователь {} добавляет доску {string}")
     public void createNewCard1(Users users, String arg1) {
@@ -63,18 +88,4 @@ public class ApiSteps extends PagesUtils {
         Assertions.assertTrue(s.contains(columnName));
     }
 
-    public Map<Users, List<String>> context;
-
-    @Before(order = 1)
-    public void startMethod() {
-        log.info("Before UI method");
-        context = new HashMap<>();
-        }
-
-    @After(order = 9999)
-    public void lastMethod() {
-        log.info("After UI method");
-        context.forEach((k, v) -> v.forEach(id -> boardController
-                .deleteTable(k, id, 200)));
-    }
 }
