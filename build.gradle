@@ -50,7 +50,7 @@ dependencies {
             'io.cucumber:cucumber-java:7.8.0',
             'io.cucumber:cucumber-junit:7.8.0',
             'org.assertj:assertj-core:3.22.0',
-            'org.slf4j:slf4j-simple:2.0.6',
+         //   'org.slf4j:slf4j-simple:2.0.6',
             'ch.qos.logback:logback-classic:1.4.5'
     )
 }
